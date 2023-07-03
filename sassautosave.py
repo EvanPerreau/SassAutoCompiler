@@ -4,7 +4,6 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from tkinter import filedialog, Button, Label, Tk, messagebox
 
-
 # Class to handle file modification events
 class MyEventHandler(FileSystemEventHandler):
     def on_modified(self, event):
@@ -16,9 +15,9 @@ class MyEventHandler(FileSystemEventHandler):
 
 
 # Function to execute the SASS command
-def execute_sass(scss_file):
-    css_file = os.path.splitext(scss_file)[0] + '.css'
-    command = sass_command.format(scss_file, css_file)
+def execute_sass(sass_file):
+    css_file = os.path.splitext(sass_file)[0] + '.css'
+    command = sass_command.format(sass_file, css_file)
     subprocess.call(command, shell=True)
 
 
@@ -29,7 +28,7 @@ def choose_directory():
     folder_label.config(text="Selected Directory: " + root_directory)
 
 
-# Function to toggle the surveillance
+# Function to toggle surveillance
 def toggle_surveillance():
     global observer, toggle_button, root_directory
     if not root_directory:
@@ -58,7 +57,7 @@ root_directory = ''
 sass_command = 'sass {} {}'
 
 # Extension of files to watch
-extension_to_watch = '.scss'
+extension_to_watch = ('.scss', '.sass')
 
 observer = None
 
